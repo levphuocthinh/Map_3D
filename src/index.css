@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #0b0f17;
+}
+
+/* Dark Leaflet overrides */
+.leaflet-container {
+  background: #141923 !important;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Convert standard keyless OpenStreetMap tiles into a crisp dark-mode vector-like map */
+.osm-dark-tiles {
+  filter: invert(100%) hue-rotate(180deg) brightness(88%) contrast(95%) saturate(35%);
+}
+
+/* Custom scrollbar for search dropdown */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.4);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(249, 115, 22, 0.5);
+}
