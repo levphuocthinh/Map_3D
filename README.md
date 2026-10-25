@@ -1,98 +1,128 @@
-# 🏙️ Map 3D (Tiny Map 3D) — Bản Đồ Đô Thị 3D Việt Nam Thời Gian Thực
+# 🏙️ Map 3D (Tiny Map 3D) — Real-Time 3D Urban Visualizer for Vietnam
 
-Ứng dụng web tương tác dựng mô hình **Đô thị 3D thời gian thực** từ dữ liệu bản đồ vệ tinh và địa hình thực tế tại Việt Nam (**Đà Nẵng, Hà Nội, TP. Hồ Chí Minh** và bất kỳ khu vực nào được khoanh vùng hoặc định vị GPS). Dự án kết hợp **Mapbox GL JS (Chế độ Vệ tinh & Vector Tiles)**, **OpenStreetMap Overpass API**, và **Three.js WebGL** để tái hiện sống động kiến trúc nhà ống, nhà phố thương mại, cầu biểu tượng và danh lam thắng cảnh Việt Nam ở tốc độ **60 FPS**.
+[![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Three.js](https://img.shields.io/badge/Three.js-r170-black?logo=three.js&logoColor=white)](https://threejs.org/)
+[![Mapbox GL JS](https://img.shields.io/badge/Mapbox_GL-v3.33-000000?logo=mapbox&logoColor=white)](https://docs.mapbox.com/mapbox-gl-js/)
+[![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
----
+An interactive real-time **3D Urban City Visualizer** built from satellite data, vector tiles, and geographic information across Vietnam (**Da Nang, Hanoi, Ho Chi Minh City**, and any user-selected GPS or bounding-box region). 
 
-## ✨ Tính Năng Nổi Bật
-
-### 1. 🛰️ Bản Đồ Vệ Tinh 2D & Khoanh Vùng Dựng 3D Trực Tiếp
-- **Chế độ Vệ tinh (`🛰️ Vệ tinh` / `🗺️ Bản đồ`):** Chuyển đổi trực tiếp giữa ảnh chụp vệ tinh độ phân giải cao (`satellite-streets-v12`) và bản đồ tối (`dark-v11`), đồng bộ 100% viền footprint các tòa nhà giữa bản đồ 2D và khung cảnh 3D.
-- **Định vị GPS người dùng (`📍 Lấy vị trí hiện tại`):** Tự động xác định tọa độ GPS hiện tại, bay tới khu vực đang đứng và dựng ngay mô hình 3D khu phố xung quanh.
-- **Khoanh vùng tùy chọn & Tìm kiếm địa danh:** Hỗ trợ kéo thả khung chữ nhật chọn vùng bất kỳ hoặc tìm kiếm nhanh các địa điểm trên toàn quốc.
-
-### 2. 🏘️ Kiến Trúc Nhà Ống & Đô Thị Việt Nam Sát Thực Tế
-- **Quy hoạch dãy nhà ống liền kề sát vách (`Terraced Tube Houses`):** Tự động phân tách các khối nhà gộp và sắp xếp các dãy nhà ống hẹp ngang (`4.2m – 5.4m`), sâu (`13.5m – 18m`) bám sát mặt đường chính và hệ thống ngõ/kiệt (`2.8m`).
-- **Mặt tiền nhà phố Việt Nam đặc trưng:**
-  - **Tầng trệt:** Biển hiệu cửa hàng Việt Nam (`PHỞ BÒ`, `CÀ PHÊ`, `NHÀ THUỐC`, `KHÁCH SẠN`, `BÁNH MÌ`, `CƠM TẤM`, `TRÀ SỮA`, `TIỆM VÀNG`), mái hiên di động, cửa cuốn và cổng sắt 4 cánh ốp đá granite.
-  - **Các tầng trên:** Khung hộp bê tông chữ C đua ra ở mặt tiền, hệ lam gỗ nhựa Conwood chắn nắng, ban công kính/sắt hộp, bồn hoa giấy và cục nóng điều hòa.
-  - **Tường hông sát vách (`Party Walls`):** Trát phẳng sơn chống thấm tách biệt hoàn toàn với mặt tiền.
-- **Hệ mái nhà chuẩn góc nhìn vệ tinh:**
-  - **Mái ngói đỏ đất nung & Mái Thái giật cấp chữ A** hướng thẳng ra mặt phố kèm diềm mái sơn trắng.
-  - **Mái tôn sóng chống nóng** (đỏ sẫm, xanh dương đậm, xanh rêu, xám bạc) lợp dốc thoát nước.
-  - **Sân thượng lát gạch** có khung đà lam bê tông, tum thang, **bồn nước Inox Sơn Hà nằm ngang** và dàn **nước nóng năng lượng mặt trời Thái Dương Năng**.
-
-### 3. 🌉 Công Trình Biểu Tượng & Danh Thắng 3D Đặc Trưng
-- **Đà Nẵng:**
-  - **Cầu Rồng** (vòm thép vàng uốn lượn, đầu & đuôi Rồng, hiệu ứng phun lửa và phun nước).
-  - **Cầu Quay Sông Hàn** (tháp dây văng chữ A trên trụ tròn giữa sông) & **Cầu Trần Thị Lý** (trụ tháp nghiêng chữ Y đỏ).
-  - **Trung tâm Hành chính Đà Nẵng** (tòa tháp tròn hình ngọn hải đăng kính xanh), **Novotel Danang Premier Han River**, **Azura Tower**, **Indochina Riverside Towers**.
-  - **Tượng Cá Chép Hóa Rồng & Cầu Tình Yêu**, **Nhà thờ Chính tòa Đà Nẵng (Nhà thờ Con Gà)**, **Chợ Hàn**, **Bảo tàng Điêu khắc Chăm**.
-- **Hà Nội & TP. Hồ Chí Minh:**
-  - **Tháp Rùa Hồ Gươm**, **Tàu điện trên cao Cát Linh – Hà Đông**, **Bitexco Financial Tower** (sân đỗ trực thăng), **Landmark 81**.
-
-### 4. 🌤️ Thời Gian Thực, Thời Tiết Động & Hiệu Năng 60 FPS
-- **Chu kỳ Ngày / Đêm & Mặt trời thực tế:** Thanh trượt thời gian 24 giờ điều chỉnh góc chiếu nắng, bóng đổ thời gian thực, hoàng hôn/bình minh và ánh đèn đô thị ban đêm.
-- **Thời tiết trực tuyến (Open-Meteo API):** Tự động đồng bộ thời tiết thực tế (Nắng, Nhiều mây, Sương mù, Mưa rơi 3D) kèm hệ thống âm thanh môi trường sống động.
-- **Tối ưu hóa đồ họa 60 FPS:** Gộp hình học theo vật liệu (`mergeGeometries`) kết hợp `THREE.InstancedMesh` cho cây xanh, phương tiện giao thông và thiết bị sân thượng, giảm số lệnh vẽ (draw calls) từ hơn 20.000 xuống chỉ còn ~35–50 draw calls.
+By uniting **Mapbox GL JS (High-Resolution Satellite & Vector Tiles)**, the **OpenStreetMap Overpass API**, and **Three.js WebGL**, this project renders true-to-life Vietnamese street-aligned tube houses, commercial shophouses, iconic bridges, and cultural landmarks locked at **60 FPS**.
 
 ---
 
-## 🛠️ Công Nghệ Sử Dụng
+## ✨ Key Features
+
+### 1. 🛰️ 2D Satellite Mapping & Direct 3D Bounding-Box Scanning
+- **Satellite Mode Toggle (`🛰️ Satellite` / `🗺️ Map`):** Seamlessly toggle between Mapbox High-Resolution Satellite imagery (`satellite-streets-v12`) and Dark Vector Map (`dark-v11`). Footprints are 100% synchronized between the 2D map and the 3D scene.
+- **Real-Time GPS User Geolocation (`📍 Locate Me`):** Automatically detect browser GPS coordinates, smoothly fly to your current location, and instantly reconstruct the surrounding neighborhood into a 3D model.
+- **Custom Bounding-Box Selection & Location Search:** Click and drag rectangular bounding boxes anywhere on the map or quickly search for cities, districts, and landmarks across Vietnam.
+
+### 2. 🏘️ Authentic Vietnamese Tube House & Urban Architecture
+- **Street-Aligned Terraced Row Houses (`Nhà ống liền kề`):** Automatically subdivides raw building polygons into realistic wall-to-wall Vietnamese tube houses (`4.2m – 5.4m` wide by `13.5m – 18m` deep) strictly oriented toward streets and inner alleys (`ngõ/kiệt` at `2.8m` width).
+- **Signature Vietnamese Facades:**
+  - **Ground Floor:** Authentic Vietnamese storefront signboards (`PHỞ BÒ`, `CÀ PHÊ`, `NHÀ THUỐC`, `KHÁCH SẠN`, `BÁNH MÌ`, `CƠM TẤM`, `TRÀ SỮA`, `TIỆM VÀNG`), retractable canvas awnings, Ausdoor-style roll-up shutters, and 4-panel folding iron gates with dark granite stone cladding.
+  - **Upper Floors:** Modern C-shaped protruding concrete box-frames, Conwood timber sun louvers, Xingfa tinted glass windows, cantilevered balconies with bougainvillea planters, and outdoor AC condenser units.
+  - **Party Walls (`Tường hông sát vách`):** Clean waterproof stucco finish separated from front facades, eliminating misplaced signage or windows on adjacent party walls.
+- **Satellite-Accurate Roofing Systems:**
+  - **Terracotta Clay Tile Stepped Thai Gables (`Mái ngói Thái giật cấp chữ A`):** Street-facing double-tier gable pediments with white fascia trim boards and ridge caps.
+  - **Corrugated Anti-Heat Metal Roofs (`Mái tôn lạnh chống nóng`):** Pitched corrugated roofs in authentic satellite colors (oxide red, cobalt blue, dark green, zinc silver).
+  - **Tiled Rooftop Terraces (`Sân thượng lát gạch`):** Featuring front concrete pergola portals, stairhead penthouses (`tum thang`), horizontal **Inox Son Ha stainless steel water tanks**, and **Thai Duong Nang solar vacuum tube water heaters**.
+
+### 3. 🌉 Signature 3D Landmarks & Vietnamese Cultural Monuments
+- **Da Nang:**
+  - **Dragon Bridge (Cầu Rồng):** Sweeping golden steel dragon arches with detailed head, tail, and animated Fire and Water breathing visual effects.
+  - **Han River Swing Bridge (Cầu Quay Sông Hàn):** Cable-stayed A-frame tower on a central rotating pier.
+  - **Tran Thị Lý Bridge:** Iconic inclined single red Y-pylon cable-stayed bridge.
+  - **Da Nang Administrative Center:** Cylindrical glass lighthouse-shaped skyscraper.
+  - **Novotel Danang Premier Han River, Azura Tower & Indochina Riverside Towers.**
+  - **Dragon Carp Statue & Love Lock Bridge, Da Nang Pink Cathedral (Nhà thờ Con Gà), Han Market, and Cham Sculpture Museum.**
+- **Hanoi & Ho Chi Minh City:**
+  - **Turtle Tower (Tháp Rùa Hồ Gươm)** surrounded by Sword Lake waters.
+  - **Cat Linh – Ha Dong Elevated Metro Train** traversing aerial concrete viaducts.
+  - **Bitexco Financial Tower** with cantilevered circular helipad.
+  - **Landmark 81** stepped high-rise skyscraper.
+
+### 4. 🌤️ 24-Hour Sun Cycle, Live Weather & 60 FPS Performance Engine
+- **24-Hour Solar Simulation:** Real-time slider adjusting sun elevation, dynamic soft shadows, golden hour / twilight gradients, and nocturnal city window illuminations.
+- **Live Weather Integration (Open-Meteo API):** Real-time weather synchronization (Sunny, Cloudy, Fog, Dynamic 3D Falling Rain) accompanied by procedural ambient audio (rain, thunder, birds, and city traffic).
+- **Locked 60 FPS Rendering:**
+  - Material-based geometry merging (`mergeGeometries`) reduces draw calls by **500x** (from ~20,000+ down to ~35–50).
+  - High-performance `THREE.InstancedMesh` handles trees, flowing road vehicles, and rooftop water tanks / solar heaters.
+  - Throttled raycasting (`45ms`) and change-detection POI label projections prevent superfluous React re-renders.
+
+---
+
+## 🛠️ Tech Stack
 
 - **Frontend:** [React 18](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Tailwind CSS](https://tailwindcss.com/)
-- **Đồ họa 3D:** [Three.js](https://threejs.org/) (`WebGLRenderer`, `ExtrudeGeometry`, `InstancedMesh`, `BufferGeometryUtils`, `PCFSoftShadowMap`)
-- **Bản đồ 2D & Dữ liệu Không gian:** [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/) (Satellite Streets & Vector Tiles), OpenStreetMap Overpass API
-- **Thời tiết & Địa lý:** Open-Meteo API, Browser Geolocation API, Mapbox Geocoding API
-- **Công cụ Build:** [Vite](https://vitejs.dev/), [Lucide Icons](https://lucide.dev/)
+- **3D Graphics & WebGL:** [Three.js](https://threejs.org/) (`WebGLRenderer`, `ExtrudeGeometry`, `InstancedMesh`, `BufferGeometryUtils`, `PCFSoftShadowMap`)
+- **Mapping & Geospatial:** [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/) (Satellite Streets & Vector Tiles), [OpenStreetMap Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API)
+- **APIs & Audio:** Open-Meteo Weather API, Browser Geolocation API, Web Audio API Sound Synthesizer
+- **Tooling & Bundler:** [Vite](https://vitejs.dev/), [Lucide Icons](https://lucide.dev/)
 
 ---
 
-## 📂 Cấu Trúc Thư Mục
+## 📂 Project Directory Structure
 
 ```text
 Map_3D/
-├── index.html                  # Trang HTML chính & nạp CSS Mapbox GL
-├── package.json                # Khai báo thư viện & scripts
-├── tsconfig.json               # Cấu hình TypeScript
-├── vite.config.ts              # Cấu hình Vite bundler
+├── index.html                  # HTML entry point & Mapbox GL CSS link
+├── package.json                # Project dependencies and npm scripts
+├── tsconfig.json               # TypeScript compiler options
+├── vite.config.ts              # Vite build configuration
+├── .env.example                # Environment variable template
+├── .gitignore                  # Git ignore rules
 └── src/
-    ├── main.tsx                # Điểm khởi chạy ứng dụng React
-    ├── App.tsx                 # Bố cục chính: Bản đồ 2D (Trái) & Khung cảnh 3D (Phải)
-    ├── index.css               # Tailwind CSS & tùy chỉnh giao diện
-    ├── types.ts                # Định nghĩa kiểu dữ liệu (BuildingFeature, RoadFeature, CityModelData...)
+    ├── main.tsx                # React application entry point
+    ├── App.tsx                 # Main layout: 2D Map (Left) & 3D Viewport (Right)
+    ├── index.css               # Global Tailwind CSS and map styling
+    ├── types.ts                # TypeScript interfaces (BuildingFeature, RoadFeature, CityModelData...)
     ├── components/
-    │   ├── Map2DPanel.tsx      # Bản đồ vệ tinh 2D Mapbox, định vị GPS, tìm kiếm & khoanh vùng
-    │   └── City3DViewport.tsx  # Khung nhìn 3D Three.js, điều khiển camera, thời gian & thời tiết
+    │   ├── Map2DPanel.tsx      # Mapbox 2D panel, satellite toggle, GPS geolocation & bounding box selector
+    │   └── City3DViewport.tsx  # Three.js 3D viewport, OrbitControls, 24h day/night cycle, weather & sound
     ├── services/
-    │   └── cityBuilder.ts      # Trích xuất dữ liệu Mapbox/OSM, phân tách nhà ống & tổng hợp đô thị
+    │   └── cityBuilder.ts      # Mapbox/OSM data extraction, tube house subdivision & urban synthesizer
     └── utils/
-        ├── geometryBuilder.ts  # Xây dựng hình học 3D tòa nhà, mái nhà Việt Nam, cầu & danh thắng
-        └── soundEngine.ts      # Bộ tổng hợp âm thanh môi trường đô thị & thời tiết (Web Audio API)
+        ├── geometryBuilder.ts  # 3D building generation, Vietnamese roofs, landmarks, and material batching
+        └── soundEngine.ts      # Web Audio procedural weather & urban environment sound synthesizer
 ```
 
 ---
 
-## 🚀 Hướng Dẫn Cài Đặt & Chạy Dự Án
+## 🚀 Getting Started & Installation
 
-### 1. Yêu cầu hệ thống
-- **Node.js** phiên bản `>= 18.0.0`
-- **npm** hoặc **yarn**
+### 1. Prerequisites
+- **Node.js** version `>= 18.0.0`
+- **npm** or **yarn**
 
-### 2. Cài đặt thư viện
+### 2. Clone Repository & Install Dependencies
 ```bash
 git clone https://github.com/levphuocthinh/Map_3D.git
 cd Map_3D
 npm install
 ```
 
-### 3. Chạy môi trường phát triển (Development)
+### 3. Environment Variables (Optional)
+To use a custom Mapbox public access token, copy `.env.example` to `.env.local`:
+```bash
+cp .env.example .env.local
+```
+Inside `.env.local`:
+```env
+VITE_MAPBOX_ACCESS_TOKEN=your_mapbox_public_token_here
+```
+*(The project includes a built-in fallback token for instant out-of-the-box evaluation).*
+
+### 4. Development Server
 ```bash
 npm run dev
 ```
-Sau khi chạy lệnh, mở trình duyệt tại địa chỉ `http://localhost:5173/`.
+Open your browser at `http://localhost:5173/`.
 
-### 4. Đóng gói bản dựng (Production Build)
+### 5. Production Build
 ```bash
 npm run build
 npm run preview
@@ -100,10 +130,19 @@ npm run preview
 
 ---
 
-## 🎮 Hướng Dẫn Điều Khiển Trong 3D
+## 🎮 Navigation & Viewport Controls
 
-- **Chuột trái + Kéo:** Xoay góc nhìn camera 360° quanh thành phố.
-- **Chuột phải + Kéo:** Di chuyển (Pan) tâm nhìn trên mặt phẳng bản đồ.
-- **Con lăn chuột (Scroll):** Phóng to / Thu nhỏ chi tiết từng dãy phố.
-- **Click vào Tòa nhà Lớn / Danh thắng:** Xem thẻ thông tin chi tiết chiều cao, số tầng và loại kiến trúc.
-- **Thanh công cụ dưới cùng:** Điều chỉnh giờ trong ngày (`00:00 – 23:59`), bật/tắt luồng xe lưu thông, đổi thời tiết và chụp ảnh màn hình 3D.
+| Input | Action |
+| :--- | :--- |
+| **Left Click + Drag** | Orbit camera 360° around the city |
+| **Right Click + Drag** | Pan camera across the ground plane |
+| **Mouse Wheel / Scroll** | Zoom in / Zoom out |
+| **Building Click** | Inspect landmark details (Height, Levels, Style, Address) |
+| **Bottom Toolbar** | Adjust 24-hour time of day, toggle traffic flow, switch weather, take screenshots |
+| **Top-Right Toolbar** | Toggle **🛰️ Satellite Mode**, select bounding boxes, or recenter view |
+
+---
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
